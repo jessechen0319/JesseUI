@@ -49,7 +49,7 @@ JesseUI = (function(_){
 		dom.style.height=0;
 		dom.style.width=0;
 		dom.style.visibility = "visible";
-		dom.className += " j_rotate_fadeIn"; 
+		dom.classList.add("j_rotate_fadeIn");
 		var rotateValue = 0;
 		var opacity = 0;
 		setTimeout(function(){
@@ -70,6 +70,8 @@ JesseUI = (function(_){
 			}
 			if(rotateValue<v_angle){
 				setTimeout(arguments.callee, 1);
+			} else {
+				dom.classList.remove("j_rotate_fadeIn");
 			}
 		},1);
 	};
