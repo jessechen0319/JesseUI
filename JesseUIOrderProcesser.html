@@ -1,0 +1,36 @@
+<script src="jesseUI.js"></script>
+
+<style>
+
+div{
+	color:white;
+	font-family:calibri;
+	font-weight:200;
+	font-size:300%;
+	-moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+	overflow:hidden;
+}
+
+</style>
+
+<div style="position:absolute; top:20px; left:20px; background-color:blue; visibility:hidden">
+I
+</div>
+
+<div style="position:absolute; top:100px; left:20px; background-color:red;visibility:hidden">
+AM
+</div>
+
+<div style="position:absolute;color:gray; top:180px; left:20px; background-color:yellow;visibility:hidden">
+HERE
+</div>
+
+<script>
+
+var divs = document.getElementsByTagName("div");
+
+JesseUI.util.orderProcess(divs, JesseUI.widget.rotateFadeInDisplay, 2, [360,50,150]);
+
+</script>
