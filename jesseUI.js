@@ -7,9 +7,38 @@
 
 JesseUI = (function(_){
 	var widget = {};
+	var util = {};
 	var _plugin = function(object, name, value){
 	object[name] = value;
 	};
+	
+	/*
+		Part: Util
+		Name: OrderProcess
+		Author: Jesse.Chen
+	*/
+
+	var orderProcess = function(array, processor, args){
+		if(!array instanceof Array){
+			return false;
+		}
+		array = Array.prototype.slice.call(array);
+		setTimeout(function(){
+			var item = array.shift();
+			var fullArgs = [item];
+			fullArgs = fullArgs.concat(args);
+			processor.apply(this, fullArgs);
+			if(array.length>0){
+				setTimeout(arguments.callee, 1);
+			}
+		},1);
+	};
+	_plugin(util,'orderProcess',orderProcess);
+	/*
+		Part: Widget
+		Name: Rotate Fade In
+		Author: Jesse.Chen
+	*/
 	var _rotateFadeIn = function(angle, opacity){
 		var elementToRotate = this,
 				deg = angle,
@@ -47,7 +76,7 @@ JesseUI = (function(_){
 	var _clearStyle = function(className, dom){
 		dom?dom.classList.remove(className):null;
 		var jesseStyle = document.getElementById(className);
-		var parentDom = jesseStyle.parentNode;
+		var parentDom = jesseStyle.parentElement;
 		parentDom.removeChild(jesseStyle);
 	};
 
@@ -83,5 +112,6 @@ JesseUI = (function(_){
 		},1);
 	};
 	_plugin(widget,'rotateFadeInDisplay',rotateFadeInDisplay);
-	return{"widget":widget};
+	//return*******************************
+	return{"widget":widget, "util":util};
 })();
