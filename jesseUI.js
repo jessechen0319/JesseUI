@@ -18,7 +18,7 @@ JesseUI = (function(_){
 		Author: Jesse.Chen
 	*/
 
-	var orderProcess = function(array, processor, args){
+	var orderProcess = function(array, processor, time, args){
 		if(!array instanceof Array){
 			return false;
 		}
@@ -29,7 +29,7 @@ JesseUI = (function(_){
 			fullArgs = fullArgs.concat(args);
 			processor.apply(this, fullArgs);
 			if(array.length>0){
-				setTimeout(arguments.callee, 1);
+				setTimeout(arguments.callee, time*1000);
 			}
 		},1);
 	};
